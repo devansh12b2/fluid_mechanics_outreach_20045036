@@ -4,6 +4,33 @@
         <meta charset="utf-8">
         <title>Fluid Mechanics</title>
         <style>
+
+          /* Added scroll percentage */
+          @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+          .scrollpercent{
+            display: flex;
+            justify-content:center;
+            align-content:center;
+            flex-direction:column;
+            position: fixed;
+            background-color: #1bce6c;
+            color: whitesmoke;
+            width: 80px;
+            height: 80px;
+            border-radius: 60%;
+            box-shadow: 0 0 10px 1px #444;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            font-size: 30px;
+        }
+          .bottom-right{
+              top: 85%;
+              right: 5vw;
+          }
+          .bottom-left{
+              top: 85%;
+              left: 5vw;
+          }
             .parallax {
             /* The image used */
             background-image: url("https://images.unsplash.com/photo-1597176262950-3d8d26f10e80?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=634&q=80");
@@ -86,6 +113,7 @@
         </style>
     </head>
     <body>
+      <div class="scrollpercent"></div>
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             
@@ -102,6 +130,19 @@
           </div>
           
           <script>
+            // scroll percent added
+            function getScrollPercent() {
+            var h = document.documentElement, 
+            b = document.body,
+            st = 'scrollTop',
+            sh = 'scrollHeight';
+            var percent = (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+            return parseInt(Math.floor(percent));
+          }
+          var scrollpercent = document.querySelector('.scrollpercent');
+          window.addEventListener('scroll', (e) => {
+          scrollpercent.innerHTML = ''+getScrollPercent()+'%';
+});
           function openNav() {
             document.getElementById("mySidenav").style.width = "250px";
             document.getElementById("main").style.marginLeft = "250px";
